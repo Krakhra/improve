@@ -12,15 +12,11 @@ const Navbar = () =>(
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="/#/pricing">Pricing</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="/">Getting Started</a>
+          <a className="nav-link active" aria-current="page" href="/#/dashboard">Dashboard</a>
         </li>
         
       </ul>
-      <a className = "effect" style={{marginRight:'15px', textDecoration:'none',color:'black'}} href="/">Log In</a>
-      <button style={{color:'#fe5f55', borderColor:'#fe5f55'}} class="btn" type="submit">Sign Up</button>
+      <a className = "effect" style={{marginRight:'15px', textDecoration:'none',color:'black'}} href="/#/dashboard">Welcome, Kirat Rakhra</a>
     </div>
   </div>
 </nav>
