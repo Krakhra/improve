@@ -14,7 +14,7 @@ class Dashboard extends React.Component{
       journal:'',
       moodStr:'',
       mood:0,
-      positive:false,
+      positive:true,
     }
     this.handleTitle = this.handleTitle.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -27,7 +27,7 @@ class Dashboard extends React.Component{
       {date:'11-12-2020',mood:7},
       {date:'12-12-2020',mood:8},
       {date:'13-12-2020',mood:9},
-      {date:'14-12-2020',mood:6},
+      {date:'14-12-2020',mood:9},
     ];
     this.setState({
       data:stub1
