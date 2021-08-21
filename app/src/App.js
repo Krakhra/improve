@@ -7,17 +7,7 @@ function App() {
 
   return (
     <div className="App">
-      <input
-        onChange={(e) => setUsername(e.target.value)}
-        value={username}
-        type="text"
-      />
-      <input
-        onChange={(e) => setPassword(e.target.value)}
-        value={password}
-        type="text"
-      />
-      <button onClick={()=>console.log(username,password)}>Submit</button>
+      <button>Login With Google</button>
     </div>
   );
 }
