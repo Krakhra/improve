@@ -8,7 +8,7 @@ function App() {
   const [password, setPassword] = useState("");
 
   const test = (response) => {
-    console.log(response);
+    axios.post("http://localhost/8000/test")
   };
 
   return (

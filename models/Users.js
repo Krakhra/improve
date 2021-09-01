@@ -1,29 +1,33 @@
 const mongoose = require("mongoose");
 
-const UserSchema = new Mongoose.Schema({
+const moodSchema = new mongoose.Schema({
+  value: Number,
+  moodDate: {
+    type: Date,
+    default: Date.now
+  },
+  journal: String
+})
+
+const UserSchema = new mongoose.Schema({
   googleid: {
     type: String,
-    required: true,
   },
   displayName: {
     type: String,
-    required: true,
   },
   firstName: {
-    type: String,
-    required: true,
+    type: String
   },
   lastName: {
     type: String,
-    required: true,
   },
   image: {
     type: String,
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
+  mood:{
+    type:[moodSchema]
+  }
 });
 
 module.exports = mongoose.model("User", UserSchema);

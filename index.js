@@ -1,35 +1,30 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
-const connectDb = require("./config/db");
-const passport = require("passport");
+const cors = require("cors");
+const mongoose = require('mongoose')
+const connectDb = require("./config/connect");
 const session = require("express-session");
+const MongoStore = require("connect-mongo");
 
 // load config
 dotenv.config({ path: "./config/config.env" });
 
-// passport
-require("./config/passport")(passport);
+const app = express();
 
-// sessions
-app.use(
-  session({
-    secret: "keyboard cat",
-    resave: false,
-    saveUninitialized: false,
-  })
-);
+app.use(cors())
 
-//passport middleware
-app.use(passport.initialize());
-app.use(passport.session());
+// Body parser
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 connectDb();
 
-const app = express();
+const port = process.env.PORT || 8000;
 
-app.use(morgan("dev"));
+app.use("/", require("./routes/index"));
 
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, console.log(`Server running in on ${PORT}`));
+app.listen(
+  port,
+  console.log(`Server running in ${process.env.NODE_ENV} mode on port ${port}`)
+);
