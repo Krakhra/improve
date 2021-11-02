@@ -6,6 +6,11 @@ router.get("/", (req, res) => {
   res.send("Hello");
 });
 
+router.post("/user",(req,res) => {
+  console.log(req.body.params)
+  res.send("test")
+})
+
 router.post("/test", async (req, res) => {
   try {
     const obj = {
