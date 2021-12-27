@@ -6,24 +6,30 @@ router.get("/", (req, res) => {
   res.send("Hello");
 });
 
-router.post("/user",(req,res) => {
-  console.log(req.body.params)
-  res.send("test")
-})
-
-router.post("/test", async (req, res) => {
-  try {
-    const obj = {
-      googleid: "123djsae323",
-      displayName: "krakhra",
-      firstName: "Kirat",
-      lastName: "Rakhra",
-    };
-    const data = new User(obj);
-    data.save();
-  } catch (err) {
-    console.log(err);
+router.post("/login", async(req, res) =>{
+  const oldUser = await User.findOne({googleid:req.body.params.googleid})
+  
+  if(oldUser){
+    res.send(oldUser)
   }
-});
+  else{
+    try{
+      const obj = {
+        googleid: req.body.params.googleid,
+        firstName: req.body.params.firstName,
+        lastName: req.body.params.lastName,
+        score:600
+      }
+  
+      const data = new User(obj)
+      data.save().then((msg)=>{
+        res.send(data)
+      })
+    }
+    catch(err){
+      res.send(err)
+    }  
+  }
+})
 
 module.exports = router;

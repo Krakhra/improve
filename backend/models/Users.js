@@ -12,18 +12,16 @@ const moodSchema = new mongoose.Schema({
 const UserSchema = new mongoose.Schema({
   googleid: {
     type: String,
-  },
-  displayName: {
-    type: String,
+    unique:true
   },
   firstName: {
     type: String
   },
   lastName: {
-    type: String,
+    type: String
   },
-  image: {
-    type: String,
+  score: {
+    type: Number,
   },
   mood:{
     type:[moodSchema]
