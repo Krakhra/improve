@@ -1,25 +1,55 @@
 const express = require("express");
 const User = require("../models/Users");
 const router = express.Router();
+const axios = require("axios");
 
-router.get("/test", (req, res) => {
-  res.send("Here Mood");
-});
+async function get_mood(){
+  let url = "https://mood-text-class.herokuapp.com/getValue/i love coding";
 
-router.post("/addJournal", async (req, res) => {
-  const moodObj = {
-    value: 10,
-    journal: "This is a journal entry",
-  };
+  const promise = await axios.get(
+    "https://mood-text-class.herokuapp.com/getValue/i love coding"
+  );
 
-  const googleid = req.body.params.googleid;
+  return promise.data
+};
 
-  const mood = await User.findOne({ googleid: googleid });
+router.get("/addJournal", async (req, res) => {
+  // const googleid = req.body.params.googleid;
 
-  mood.mood.push(moodObj);
-  mood.save();
+  const mood = await User.findOne({ firstName: "Kirat" });
 
-  res.send("Done");
+  // mood.mood.push(req.body.params.mood);
+
+  new_score = await get_mood();
+
+  switch(new_score){
+    case "joy":
+      mood.score += 15
+      break 
+    case "sadness":
+      mood.score -= 10
+      break
+    case "fear":
+      mood.score -= 5
+      break
+    case "anger":
+      mood.score -= 5 
+      break 
+    case "surprise":
+      mood.score += 5
+      break 
+    case "disgust":
+      mood.score -= 5
+      break
+    case "shame":
+      mood.score -= 5 
+      break
+    default:
+      break 
+  }
+  
+  mood.save()
+  res.send("elo");
 });
 
 router.get("/getJournals", async (req, res) => {
