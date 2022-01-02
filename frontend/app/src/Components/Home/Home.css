@@ -1,0 +1,24 @@
+.Home{
+    display:flex;
+}
+
+.homeImage{
+    flex:1;
+    width:65%;
+    height:100vh;
+}
+
+.loginContainer{
+    width:35%;
+    height:100vh;
+    background-color: white;
+}
+
+.homeHeaders{
+    font-size: 30px;
+}
+
+.login{
+    margin-left:10%;
+    margin-right:10%;
+}

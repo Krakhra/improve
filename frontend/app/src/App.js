@@ -1,13 +1,16 @@
 import "./App.css";
 import { useState } from "react";
 import axios from "axios";
-import Navbar from "./Components/Navbar/Navbar";
+import Home from "./Components/Home/Home";
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <Navbar/>
-    </div>
+    
   );
 }
 

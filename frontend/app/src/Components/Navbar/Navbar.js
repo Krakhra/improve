@@ -1,10 +1,27 @@
 import "./Navbar.css";
 import { GoogleLogin } from "react-google-login";
+import axios from 'axios';
 
 const Navbar = () => {
-  const test = (response) => {
-    console.log("logged in");
-  };
+
+  const login = (response) =>{
+    // axios.post("http://localhost:8000/login",{
+    //   params:{
+    //     data:"test"
+    //   }
+    // })
+    if(!response || !response.googleId || !response.profileObj){
+      return
+    }
+
+    axios.post("http://localhost:8000/login",{
+      params:{
+        googleid:response.googleId,
+        firstName:response.profileObj.givenName,
+        lastName:response.profileObj.familyName
+      }
+    })
+  }
 
   return (
     <div className="Navbar">
@@ -18,8 +35,8 @@ const Navbar = () => {
           clientId="870147874229-cbh6ihfk98cc627j8lqf2q2188a8n7sl.apps.googleusercontent.com"
           buttonText="Login"
           className="navLink"
-          onSuccess={test}
-          onFailure={test}
+          onSuccess={login}
+          onFailure={login}
           cookiePolicy={"single_host_origin"}
         />
       </div>
