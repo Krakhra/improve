@@ -4,10 +4,12 @@ import { Form, Input, Button, Checkbox } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import 'antd/dist/antd.css';
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const Login =  () => {
+const Login = () => {
 
-  const login_user = async (response) => {
+  const Login_user = async (response) => {
+    let Navigate = useNavigate();
     if(!response || !response.googleId || !response.profileObj){
       return
     }
@@ -25,7 +27,8 @@ const Login =  () => {
       return
     }
 
-    
+    Navigate('/dashboard',{state:res.data})
+
   };
 
   const onFinish = (values) => {
@@ -40,8 +43,8 @@ const Login =  () => {
         clientId="870147874229-cbh6ihfk98cc627j8lqf2q2188a8n7sl.apps.googleusercontent.com"
         buttonText="Google Login"
         className="navLink"
-        onSuccess={login_user}
-        onFailure={login_user}
+        onSuccess={Login_user}
+        onFailure={Login_user}
         cookiePolicy={"single_host_origin"}
       />
       <p style={{ color: "#878787" ,marginTop:'20px'}}>- Or Using Email -</p>
